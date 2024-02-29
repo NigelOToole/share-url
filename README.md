@@ -1,7 +1,5 @@
 # Share URL
-### Custom video placeholder with lazy load for better performance
-
-Full styling control of video placeholders with an image/picture used for the poster which allows the use of src-set. Videos and embeds are lazy loaded to reduce page load and embeds are prefetched on user interaction to improve performance.
+### Share a URL with Web Share and copying to the clipboard
 
 ### [Demo and documentation](http://nigelotoole.github.io/share-url/)
 
