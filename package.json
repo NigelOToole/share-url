@@ -1,0 +1,50 @@
+{
+  "name": "@nigelotoole/share-url",
+  "homepage": "https://nigelotoole.github.io/share-url/",
+  "author": "Nigel O Toole <pure@purestructure.com> (http://www.purestructure.com)",
+  "description": "Share a URL with Web Share and copying to the clipboard",
+  "keywords": [
+    "share",
+    "webshare",
+    "javascript"  
+  ],
+
+  "version": "0.1.0",
+  "main": "src/scripts/share-url.js",
+  "license": "MIT",
+  "engines": {
+    "node": ">=4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NigelOToole/share-url.git"
+  },
+  "bugs": {
+    "url": "https://github.com/NigelOToole/share-url/issues"
+  },
+
+  "browserslist": [
+    "defaults"
+  ],
+  "devDependencies": {
+    "@11ty/eleventy-dev-server": "^1.0.4",
+    "concurrently": "^8.2.1",
+    "cross-env": "^7.0.3",
+    "postcss": "^8.4.31",
+    "postcss-cli": "^10.1.0",
+    "postcss-custom-media": "^10.0.2",
+    "postcss-import": "^15.1.0",
+    "postcss-preset-env": "^9.1.4",
+    "rimraf": "^5.0.5"
+  },
+  "scripts": {
+    "clean": "rimraf src/**/*.map",
+    "dev": "cross-env NODE_ENV=development && concurrently \"npm:dev:*\"",
+    "dev:server": "npx @11ty/eleventy-dev-server --dir=src",
+    "dev:styles": "postcss src/styles/site/main.css src/styles/share-url/share-url.css --dir src/styles --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production concurrently \"npm:build:*\"",
+    "build:styles": "postcss src/styles/site/main.css src/styles/share-url/share-url.css --dir src/styles",
+    "publish": "npm run build && npm publish"
+  }
+
+}

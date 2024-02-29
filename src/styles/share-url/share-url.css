@@ -1,0 +1,32 @@
+.share-url, share-url button {
+  display: inline-flex;
+  gap: .25em;
+  justify-content: center;
+  align-items: center;
+  padding: 8px 16px;
+  border: none;
+  background-color: #0157ff;
+  transition: all .25s;
+
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.5;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+
+  &:is(:hover, :focus, .is-active) {
+    background-color: #0034a3;
+  }
+
+  svg {
+    width: 1em;
+    height: 1em;
+    fill: currentColor;
+    stroke: currentColor;
+  }
+
+  &:not(.is-active) svg:last-of-type, &.is-active svg:first-of-type {
+    display: none;
+  }
+}

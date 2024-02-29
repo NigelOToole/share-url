@@ -1,0 +1,311 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Share URL - Share a URL with Web Share and copying to the clipboard</title>
+    <meta name="description" content="Share a URL with Web Share and copying to the clipboard">
+
+    <!-- <meta property="og:title" content="Share URL"> 
+    <meta property="og:description" content="Share a URL with Web Share and copying to the clipboard">
+    <meta property="og:site_name" content="Share URL">
+    <meta property="og:url" content="https://nigelotoole.github.io/share-url/">
+    <meta property="og:image" content="https://nigelotoole.github.io/share-url/images/share-url-social.png">
+    <meta property="og:image:alt" content="Share URL">
+    <meta name="twitter:card" content="summary_large_image"> -->
+  
+    <!-- <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">   -->
+
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/share-url.css">
+  </head>
+
+  <body>
+
+    <header class="header fullwidth space--sm">
+      <div class="container">
+
+        <h1 class="logo-text">Share URL</h1> 
+
+        <nav class="nav header-nav">
+          <a href="https://github.com/NigelOToole/share-url/archive/master.zip" class="btn btn--green btn--ghost"><span>Download</span></a>
+          <a href="https://github.com/NigelOToole/share-url" class="btn btn--green btn--ghost"><span>GitHub <svg class="icon" aria-hidden="true" viewbox="0 0 24 24"><path d="M7 7h8.586L5.293 17.293l1.414 1.414L17 8.414V17h2V5H7v2z"/></svg></span></a>
+        </nav>
+      </div>
+    </header>
+
+
+    <main id="main" class="main">
+
+      <section class="fullwidth intro">
+        <div class="container content flow">
+
+          <div class="heading page-intro">
+            <h2 class="page-heading">Share a URL with Web Share and copying to the clipboard</h2>
+
+            <!-- <img src="images/share-url-logo.svg" class="page-intro-img" width="80" height="80" alt="Share URL logo"> -->
+          </div>
+
+          <h3>Features</h3> 
+          <ul class="columns-sm-2">
+            <li>Native Web Share API is used if available</li>
+            <li>Copy to clipboard</li>
+            <li>Updates text on share success</li>
+          </ul>
+          
+        </div>
+      </section>
+
+
+      <section class="fullwidth demos">
+        <div class="container content flow">
+
+          <h2>Examples</h2>
+
+          <h3>Basic Example</h3>
+
+          <section class="demo demo--default">
+
+            <div class="group ">
+              <button class="share-url">Share link</button>
+              
+              <button class="share-url" data-share-action="clipboard" data-share-text-success="Copied">Copy link</button>
+            </div>
+
+          </section>
+
+
+          <h3>Complex</h3>
+
+          <section class="demo demo--complex">
+
+            <div class="group">
+    
+              <button class="share-url" data-share-text-selector="span" data-share-maintain-size="true">
+                <span>Share link</span> 
+                <svg aria-hidden="true" viewbox="0 0 24 24"><path d="m3.293 11.293 1.414 1.414L11 6.414V20h2V6.414l6.293 6.293 1.414-1.414L12 2.586l-8.707 8.707z"/></svg>
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
+              </button>
+              
+              <button class="share-url" data-share-text-selector="span" data-share-maintain-size="true" data-share-action="clipboard" data-share-text-success="Copied">
+                <span>Copy link</span> 
+                <svg aria-hidden="true" viewbox="0 0 24 24"><rect x="8" y="3" width="13" height="13" rx="0" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></rect><path d="M4 7v12c0 .6.4 1 1 1h12" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></path></svg>
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
+              </button>
+    
+            </div>
+
+          </section>
+
+
+          <h3>Web Component</h3>
+
+          <section class="demo demo--wc">
+
+            <div class="group">
+    
+              <share-url text-selector="span" maintain-size="true">
+              <button>
+                <span>Share link</span> 
+                <svg aria-hidden="true" viewbox="0 0 24 24"><path d="m3.293 11.293 1.414 1.414L11 6.414V20h2V6.414l6.293 6.293 1.414-1.414L12 2.586l-8.707 8.707z"/></svg>
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
+              </button>
+              </share-url>
+              
+              <share-url text-selector="span" maintain-size="true" action="clipboard" text-success="Copied">
+              <button>
+                <span>Copy link</span> 
+                <svg aria-hidden="true" viewbox="0 0 24 24"><rect x="8" y="3" width="13" height="13" rx="0" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></rect><path d="M4 7v12c0 .6.4 1 1 1h12" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></path></svg>
+                <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
+              </button>
+              </share-url>
+    
+            </div>
+
+          </section>
+
+
+        </div>
+      </section>
+
+
+      <section class="fullwidth docs">
+        <div class="container content flow">
+
+          <h2>Installation</h2>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">$ npm install share-url --save-dev</code></pre>
+
+
+          <h2>Usage</h2>
+
+          <h3>JavaScript</h3>
+
+          <p>Import the JS into your build process or add the script tag to the page.</p>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">import { ShareUrl, ShareUrlAuto } from 'share-url.js';
+
+// Initialize a single element
+const ShareUrlDefault = ShareUrl({ 
+  selector: '#share-url--default'
+});
+
+// Initialize all elements with default options, these can be overridden by reinitializing or by data attributes on the element.
+ShareUrlAuto();
+</code></pre>   
+        
+          <h3>Web Component</h3>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">import { ShareUrl } from 'share-url-wc.js';</code></pre>
+
+
+          <h3>Options</h3>
+
+          <p>The options can be set via initialization in the JS or by data attributes on the element with the prefix 'share'. The web component uses attributes without any prefix. Attributes will be given the highest priority.</p>
+
+          <pre><code class="scroll-shadow-inline" tabindex="0">&lt;button class="share-url" data-share-active-class="is-open"&gt;</code></pre>
+
+          <pre><code class="scroll-shadow-inline" tabindex="0">&lt;share-url active-class="is-open"&gt;</code></pre>
+
+          <div class="table-outer scroll-shadow-inline" tabindex="0">
+          <table class="table">
+            <tr>
+              <th>Property</th>
+              <th>Default</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+            <tr>
+              <td><code>selector</code></td>
+              <td>'.share-url'</td>
+              <td>String || Element</td>
+              <td>Container element selector.</td>
+            </tr>
+            <tr>
+              <td><code>activeClass</code></td>
+              <td>'is-active'</td>
+              <td>String</td>
+              <td>CSS class when share has been successful.</td>
+            </tr>
+            <tr>
+              <td><code>action</code></td>
+              <td>'share'</td>
+              <td>String</td>
+              <td>Action to perform i.e. share or clipboard.</td>
+            </tr>
+            <tr>
+              <td><code>url</code></td>
+              <td>document.location.href</td>
+              <td>String</td>
+              <td>URL to share.</td>
+            </tr>
+            <tr>
+              <td><code>title</code></td>
+              <td>document.title</td>
+              <td>String</td>
+              <td>Title text to share.</td>
+            </tr>
+            <tr>
+              <td><code>textSelector</code></td>
+              <td>null</td>
+              <td>String</td>
+              <td>Element to update the text, the element itself is the default.</td>
+            </tr>
+            <tr>
+              <td><code>textLabel</code></td>
+              <td>''</td>
+              <td>Sting</td>
+              <td>Initial text on the element, existing text is the default.</td>
+            </tr>
+            <tr>
+              <td><code>textSuccess</code></td>
+              <td>'Shared'</td>
+              <td>String</td>
+              <td>Text shown when a share is successful.</td>
+            </tr>
+            <tr>
+              <td><code>maintainSize</code></td>
+              <td>false</td>
+              <td>Boolean</td>
+              <td>Element will maintain its size after text is changed to prevent layout jank.</td>
+            </tr>
+          </table>
+          </div>
+
+
+          <h3>Markup</h3>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">&lt;button class="share-url"&gt;Share link&lt;/button&gt;</code></pre>          
+
+
+          <h3>Web Component</h3>
+
+          <p>As above but with a custom element rather than a div.</p>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">&lt;share-url&gt;&lt;button&gt;Share link&lt;/button&gt;&lt;/share-url&gt;</code></pre>
+
+        <h2>Compatibility</h2>
+        <p>Supports all modern browsers at the time of release.</p>
+
+
+        <h2>Demo site</h2>
+        <p>Clone the repo from Github and run the commands below.</p>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">$ npm install
+$ npm run dev
+</code></pre>
+
+
+          <h3>Credits</h3>
+          <p>
+            <a href="https://web.dev/patterns/web-apps/share/">How to let the user share the website they are on</a> by Thomas Steiner and <a href="https://www.zachleat.com/web/webcare-webshare/">webcare-webshare Web Component</a> by Zach Leatherman.
+          </p>
+
+        </div>
+      </section>
+
+    </main>
+
+
+    <footer class="fullwidth space--sm footer">
+      <div class="container content">
+        <div class="group share">
+          <h4 class="share-title">Share this</h4>
+
+          <share-url text-selector="span" maintain-size="true">
+            <button class="btn btn--icon-multi">
+              <span>Share link</span> 
+              <svg class="icon" aria-hidden="true" viewbox="0 0 24 24"><path d="m3.293 11.293 1.414 1.414L11 6.414V20h2V6.414l6.293 6.293 1.414-1.414L12 2.586l-8.707 8.707z"/></svg>
+              <svg class="icon" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
+            </button>
+          </share-url>
+          
+          <share-url action="clipboard" text-success="Copied" text-selector="span" maintain-size="true">
+            <button class="btn btn--icon-multi share-url">
+              <span>Copy link</span> 
+              <svg class="icon" viewbox="0 0 24 24"><rect x="8" y="3" width="13" height="13" rx="0" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></rect><path d="M4 7v12c0 .6.4 1 1 1h12" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></path></svg>
+              <svg class="icon" aria-hidden="true" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
+            </button>
+          </share-url>
+
+        </div>
+
+        <nav class="nav footer-nav">
+          <a href="http://www.purestructure.com/nigelotoole" rel="author">Made by Nigel O Toole</a>
+          <a href="https://github.com/nigelotoole" rel="external">GitHub</a>
+          <a data-encode="bWFpbHRvOnB1cmVAcHVyZXN0cnVjdHVyZS5jb20" data-encode-attribute="href" class="encode">Email</a>
+          <a href="http://www.purestructure.com" rel="external" class="w-100">PURE STRUCTURE</a>
+        </nav>
+      </div>
+    </footer>
+
+
+    <script src="scripts/main.js" type="module"></script>
+    <!-- <script src="scripts/share-url-wc.js" type="module"></script> -->
+
+  </body>
+</html>
