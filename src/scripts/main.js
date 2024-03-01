@@ -1,7 +1,6 @@
 import { ShareUrl } from './share-url.js';
 import { ShareUrl as ShareUrlWC } from './share-url-wc.js';
 
-
 window.addEventListener('DOMContentLoaded', (event) => {
 
   // Share links

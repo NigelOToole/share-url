@@ -6,9 +6,8 @@
   "keywords": [
     "share",
     "webshare",
-    "javascript"  
+    "javascript"
   ],
-
   "version": "0.1.0",
   "main": "src/scripts/share-url.js",
   "license": "MIT",
@@ -22,7 +21,6 @@
   "bugs": {
     "url": "https://github.com/NigelOToole/share-url/issues"
   },
-
   "browserslist": [
     "defaults"
   ],
@@ -44,7 +42,6 @@
     "dev:styles": "postcss src/styles/site/main.css src/styles/share-url/share-url.css --dir src/styles --watch",
     "build": "npm run clean && cross-env NODE_ENV=production concurrently \"npm:build:*\"",
     "build:styles": "postcss src/styles/site/main.css src/styles/share-url/share-url.css --dir src/styles",
-    "publish": "npm run build && npm publish"
+    "publish": "npm run build && npm publish --access public"
   }
-
 }

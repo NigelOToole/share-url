@@ -6,10 +6,10 @@
 ---
 ## Quick start
 ```javascript
-$ npm install share-url --save-dev
+$ npm install @nigelotoole/share-url --save-dev
 ```
 
-Import the JS and CSS into your project, add the elements to your HTML and initialize the plugin. 
+Import the JS into your project, add the elements to your HTML and initialize the plugin if needed.
 
 [Full documentation](http://nigelotoole.github.io/share-url/)
 
