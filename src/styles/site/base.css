@@ -211,3 +211,9 @@ code {
   }
 }
 
+
+.unsupported {
+  &:not(.is-active) {
+    display: none;
+  }
+}

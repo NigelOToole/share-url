@@ -9,6 +9,12 @@ window.addEventListener('DOMContentLoaded', (event) => {
 		ShareUrl({ selector: item });
 	};
 
+
+  // Browser support
+  if (!navigator.share) {
+    document.querySelector('.unsupported').classList.add('is-active');
+  }
+
   
   // Encoded text
   const encodeElements = document.querySelectorAll('.encode');

@@ -7,9 +7,9 @@ class ShareUrl extends HTMLElement {
 		return string;
   };
 
-  camelCase(name, delim = '-') {
-    const pattern = new RegExp((delim + "([a-z])"), "g");
-    return name.replace(pattern, (match, capture) => capture.toUpperCase());
+  camelCase(text, delimiter = '-') {
+    const pattern = new RegExp((`${delimiter}([a-z])`), 'g');
+    return text.replace(pattern, (match, replacement) => replacement.toUpperCase());
   };
 
 
@@ -33,10 +33,7 @@ class ShareUrl extends HTMLElement {
       let prop = this.camelCase(item);
       let value = this.checkBoolean(this.getAttribute(item));
       this.options[prop] = value;
-      // console.log(`${prop}: ${value}`);
 		}
-
-    // console.log(this.options);
 
     this.button = this.querySelector('button');
 
@@ -50,7 +47,6 @@ class ShareUrl extends HTMLElement {
       this.button.addEventListener('click', () => this.shareEvent());
     }
     else {
-      console.log(this, this.button, this.options.action)
       this.style.display = 'none';
     }
   } 

@@ -58,10 +58,8 @@ const ShareUrl = function (args) {
       let value = checkBoolean(datasetOptions[item]);
 
 			options[prop] = value;
-      // console.log(`${prop}: ${value}`)
 		};
 
-    // console.log(options);
 
     textElement = element.querySelector(options.textSelector);
     if (textElement === null) textElement = element;
@@ -69,7 +67,6 @@ const ShareUrl = function (args) {
 
 
     if (navigator[options.action]) {
-      // element.addEventListener('click', (event) => shareEvent(event, options.action));
       element.addEventListener('click', () => shareEvent());
     }
     else {

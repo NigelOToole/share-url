@@ -11,8 +11,6 @@ $ npm install @nigelotoole/share-url --save-dev
 
 Import the JS into your project, add the elements to your HTML and initialize the plugin if needed.
 
-[Full documentation](http://nigelotoole.github.io/share-url/)
-
 ---
 ### License
 MIT © Nigel O Toole
