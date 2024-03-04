@@ -213,7 +213,9 @@ code {
 
 
 .unsupported {
-  &:not(.is-active) {
-    display: none;
+  display: none;
+
+  &.is-active {
+    display: block;
   }
 }

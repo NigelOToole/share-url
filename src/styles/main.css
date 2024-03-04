@@ -361,8 +361,11 @@ code.scroll-shadow-inline {
     calc(var(--shadow-size) * 2) 0 var(--shadow-size) 0 var(--shadow-color);
   }
 }
-.unsupported:not(.is-active) {
-    display: none;
+.unsupported {
+  display: none;
+}
+.unsupported.is-active {
+    display: block;
   }
 /* Spacing of components */
 .space, .fullwidth {
