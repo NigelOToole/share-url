@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Share URL - Share a URL with Web Share and copying to the clipboard</title>
-    <meta name="description" content="Share a URL with Web Share and copying to the clipboard">
+    <title>Share URL - Share a URL with Web Share, copy to clipboard or to a social platform</title>
+    <meta name="description" content="Share a URL with Web Share, copy to clipboard or to a social platform">
 
     <meta property="og:title" content="Share URL"> 
-    <meta property="og:description" content="Share a URL with Web Share and copying to the clipboard">
+    <meta property="og:description" content="Share a URL with Web Share, copy to clipboard or to a social platform">
     <meta property="og:site_name" content="Share URL">
     <meta property="og:url" content="https://nigelotoole.github.io/share-url/">
     <meta property="og:image" content="https://nigelotoole.github.io/share-url/images/share-url-social.png">
@@ -45,7 +45,7 @@
         <div class="container content flow">
 
           <div class="heading page-intro">
-            <h2 class="page-heading">Share a URL with Web Share and copying to the clipboard</h2>
+            <h2 class="page-heading">Share a URL with Web Share, copy to clipboard or to a social platform</h2>
 
             <img src="images/share-url-logo.svg" class="page-intro-img" width="80" height="80" alt="Share URL logo">
           </div>
@@ -54,6 +54,7 @@
           <ul class="columns-sm-2">
             <li>Native <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API">Web Share API</a> is used if available</li>
             <li>Copy to clipboard</li>
+            <li>Share directly to social platforms</li>
             <li>Updates text on share success</li>
           </ul>
           
@@ -68,14 +69,22 @@
 
           <p class="unsupported">Your browser does not support the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Share_API">Web Share API</a>. Check your browser support at <a href="https://caniuse.com/?search=web-share">Can I Use</a>. The below examples will only show the copy to clipboard button. </p>
 
-          <h3>Basic Example</h3>
+          <h3>Basic</h3>
 
-          <section class="demo demo--default">
+          <section class="demo demo--default flow">
 
-            <div class="group ">
+            <div class="group">
               <button class="share-url">Share link</button>
-              
               <button class="share-url" data-share-action="clipboard" data-share-text-success="Copied">Copy link</button>
+            </div>
+
+            <div class="group">
+              <button class="share-url" data-share-action="twitter">Twitter</button>
+              <button class="share-url" data-share-action="facebook">Facebook</button>
+              <button class="share-url" data-share-action="mastodon">Mastodon</button>
+              <button class="share-url" data-share-action="linkedin">Linkedin</button>
+              <button class="share-url" data-share-action="https://www.reddit.com/submit" data-share-title-parameter="title">Reddit</button>
+              <button class="share-url" data-share-action="whatsapp://send" data-share-url-parameter="">WhatsApp</button>
             </div>
 
           </section>
@@ -108,8 +117,8 @@
 
           <section class="demo demo--wc">
 
-            <div class="group">
-    
+            <div class="group">    
+
               <share-url text-selector="span" maintain-size="true">
               <button>
                 <span>Share link</span> 
@@ -125,6 +134,11 @@
                 <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
               </button>
               </share-url>
+              
+
+              <!-- <share-url action="linkedin"><button>Linkedin</button></share-url>
+              <share-url action="https://www.reddit.com/submit" title-parameter="title"><button>Reddit</button></share-url>
+              <share-url action="whatsapp://send" url-parameter=""><button>WhatsApp</button></share-url> -->
     
             </div>
 
@@ -204,7 +218,7 @@ ShareUrlAuto();
               <td><code>action</code></td>
               <td>'share'</td>
               <td>String</td>
-              <td>Action to perform i.e. share or clipboard.</td>
+              <td>Action keyword (share, clipboard, twitter, facebook, mastodon, linkedin) or a url e.g. "https://www.social.com/share".</td>
             </tr>
             <tr>
               <td><code>url</code></td>
@@ -217,6 +231,18 @@ ShareUrlAuto();
               <td>document.title</td>
               <td>String</td>
               <td>Title text to share.</td>
+            </tr>
+            <tr>
+              <td><code>urlParameter</code></td>
+              <td>'url'</td>
+              <td>String</td>
+              <td>Parameter for the url e.g. social.com?url=site.com</td>
+            </tr>
+            <tr>
+              <td><code>titleParameter</code></td>
+              <td>'text'</td>
+              <td>String</td>
+              <td>Parameter for the title e.g. social.com?text=Check+out+site.com</td>
             </tr>
             <tr>
               <td><code>textSelector</code></td>
@@ -267,7 +293,7 @@ $ npm run dev
 </code></pre>
 
           <h3>References</h3>
-          <p><a href="https://web.dev/patterns/web-apps/share/">How to let the user share the website they are on</a> by Thomas Steiner and <a href="https://www.zachleat.com/web/webcare-webshare/">webcare-webshare Web Component</a> by Zach Leatherman.</p>
+          <p><a href="https://web.dev/patterns/web-apps/share/">How to let the user share the website they are on</a> by Thomas Steiner, <a href="https://www.zachleat.com/web/webcare-webshare/">webcare-webshare Web Component</a> by Zach Leatherman and <a href="https://christianheilmann.com/2023/08/18/adding-a-share-to-mastodon-link-to-any-web-site-and-here/">Adding a “share to mastodon” link to any web site – and here</a> by Christian Heilmann.</p>
           <p><a href="https://adactio.com/journal/20618">HTML web components</a> by Jeremy Keith and <a href="https://blog.jim-nielsen.com/2023/html-web-components/">HTML web components</a> by Jim Nielsen.</p>
 
         </div>

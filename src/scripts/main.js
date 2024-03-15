@@ -3,7 +3,7 @@ import { ShareUrl as ShareUrlWC } from './share-url-wc.js';
 
 window.addEventListener('DOMContentLoaded', (event) => {
 
-  // Share links
+  // Demos
   const elements = document.querySelectorAll('.demo--default .share-url, .demo--complex .share-url');
 	for (const item of elements) {
 		ShareUrl({ selector: item });

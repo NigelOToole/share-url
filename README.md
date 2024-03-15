@@ -1,5 +1,5 @@
 # Share URL
-### Share a URL with Web Share and copying to the clipboard
+### Share a URL with Web Share, copy to clipboard or to a social platform
 
 ### [Demo and documentation](http://nigelotoole.github.io/share-url/)
 

@@ -2,13 +2,13 @@
   "name": "@nigelotoole/share-url",
   "homepage": "https://nigelotoole.github.io/share-url/",
   "author": "Nigel O Toole <pure@purestructure.com> (http://www.purestructure.com)",
-  "description": "Share a URL with Web Share and copying to the clipboard",
+  "description": "Share a URL with Web Share, copy to clipboard or to a social platform",
   "keywords": [
     "share",
     "webshare",
     "javascript"
   ],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "src/scripts/share-url.js",
   "license": "MIT",
   "engines": {
