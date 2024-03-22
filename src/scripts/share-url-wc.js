@@ -38,7 +38,8 @@ class ShareUrl extends HTMLElement {
       textSelector: null,
       textLabel: '',
       textSuccess: 'Shared',
-      maintainSize: false
+      maintainSize: false,
+      fallback: false,
     }  
 
 		for (const item of this.getAttributeNames()) {
@@ -54,10 +55,15 @@ class ShareUrl extends HTMLElement {
     this.element = this.querySelector('button');
     if (!this.element) return;
 
+    if ((this.options.fallback && navigator.share !== undefined)) {
+      this.hideElement();
+      return;
+    } 
+
     this.textElement = this.querySelector(this.options.textSelector);
     if (this.textElement === null) this.textElement = this.element;
     if (this.options.textLabel) this.textElement.innerText = this.options.textLabel;
-    
+
     if (this.options.action === 'share' || this.options.action === 'clipboard') {
       navigator[this.options.action] ? this.element.addEventListener('click', () => this.shareEvent()) : this.style.display = 'none';
     }
@@ -66,6 +72,9 @@ class ShareUrl extends HTMLElement {
     }
   } 
 
+  hideElement() {
+    this.style.display = 'none';
+  };
 
   async shareEvent() {
     try {
@@ -105,19 +114,17 @@ class ShareUrl extends HTMLElement {
 
 
     const platformURL = new URL(this.options.action);
-    const platformParams = new URLSearchParams(platformURL.search);
 
     if (this.options.urlParameter === '') { 
       this.options.title += ` ${this.options.url}`;
     }
     else {
-      platformParams.append(this.options.urlParameter, this.options.url);
+      platformURL.searchParams.append(this.options.urlParameter, this.options.url);
     }
 
-    platformParams.append(this.options.titleParameter, this.options.title);
-    platformURL.search = platformParams;
+    platformURL.searchParams.append(this.options.titleParameter, this.options.title);
 
-    window.open(platformURL, '_blank', 'noreferrer,noopener');
+    window.open(platformURL.href, '_blank', 'noreferrer,noopener');
     this.shareSuccess();
   }
 

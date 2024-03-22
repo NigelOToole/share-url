@@ -11,6 +11,7 @@ const ShareUrl = function (args) {
     textLabel: '',
     textSuccess: 'Shared',
     maintainSize: false,
+    fallback: false,
 	}
 
 	let options = {...defaults, ...args};
@@ -86,24 +87,24 @@ const ShareUrl = function (args) {
 
     if (!isValidUrl(options.action)) return;
 
-
     const platformURL = new URL(options.action);
-    const platformParams = new URLSearchParams(platformURL.search);
 
     if (options.urlParameter === '') { 
       options.title += ` ${options.url}`;
     }
     else {
-      platformParams.append(options.urlParameter, options.url);
+      platformURL.searchParams.append(options.urlParameter, options.url);
     }
 
-    platformParams.append(options.titleParameter, options.title);
-    platformURL.search = platformParams;
+    platformURL.searchParams.append(options.titleParameter, options.title);
 
-    window.open(platformURL, '_blank', 'noreferrer,noopener');
+    window.open(platformURL.href, '_blank', 'noreferrer,noopener');
     shareSuccess();
   };
 
+  const hideElement = function() {
+    element.style.display = 'none';
+  };
   
   const setup = function() {
     let datasetOptions = {...element.dataset};
@@ -119,13 +120,17 @@ const ShareUrl = function (args) {
 			options[prop] = value;
 		};
 
+    if ((options.fallback && navigator.share !== undefined)) {
+      hideElement();
+      return;
+    } 
 
     textElement = element.querySelector(options.textSelector);
     if (textElement === null) textElement = element;
     if (options.textLabel) textElement.innerText = options.textLabel;
 
     if (options.action === 'share' || options.action === 'clipboard') {
-      navigator[options.action] ? element.addEventListener('click', () => shareEvent()) : element.style.display = 'none';
+      navigator[options.action] ? element.addEventListener('click', () => shareEvent()) : hideElement();
     }
     else {
       element.addEventListener('click', () => sharePlatform());
