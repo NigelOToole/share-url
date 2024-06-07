@@ -361,6 +361,7 @@ code.scroll-shadow-inline {
     calc(var(--shadow-size) * 2) 0 var(--shadow-size) 0 var(--shadow-color);
   }
 }
+/* Browser support message */
 .unsupported {
   display: none;
 }
@@ -502,10 +503,14 @@ code.scroll-shadow-inline {
   gap: 16px;
   gap: var(--layout-space);
 }
-.group--min > * > *:first-child, .group--min > * > *:first-child > *:first-child {
+/* .group--min {
+  > * > *:first-child {
+    &, & > *:first-child {
       min-width: 144px;
       text-align: center;
     }
+  }
+} */
 /* Demos */
 .demos .container {
   --flow-space: var(--layout-space-lg);

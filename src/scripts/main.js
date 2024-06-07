@@ -25,4 +25,11 @@ window.addEventListener('DOMContentLoaded', (event) => {
       item.setAttribute(`${item.dataset['encodeAttribute']}`, `${decode}`);
     }
   }
+
+
+  // Dynamically add the element - https://gomakethings.com/the-different-ways-to-instantiate-a-web-component/
+  // let dynamicElement = document.createElement('share-url');
+  // dynamicElement.innerHTML = `<button>Dynamic share</button>`;
+  // dynamicElement.setAttribute('action', 'clipboard');
+  // document.querySelector('.demo--wc .group').append(dynamicElement);
 });

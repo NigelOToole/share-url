@@ -14,10 +14,12 @@ const ShareUrl = function (args) {
     fallback: false,
 	}
 
+  let platforms = [{ name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }];
+
 	let options = {...defaults, ...args};
+
   let element;
   let textElement;
-  let platforms = [{ name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }];
 
 
 
@@ -37,7 +39,10 @@ const ShareUrl = function (args) {
       return false;
     }
   };
-  
+
+  const hideElement = function() {
+    element.style.display = 'none';
+  };
 
 
   // Methods
@@ -63,7 +68,9 @@ const ShareUrl = function (args) {
   // https://www.bentasker.co.uk/posts/documentation/general/adding-a-share-on-mastodon-button-to-a-website.html
   // https://christianheilmann.com/2023/08/18/adding-a-share-to-mastodon-link-to-any-web-site-and-here/
 
-  const sharePlatform = function () {
+  const sharePlatform = function (event) {
+    event.preventDefault();
+
     let platformData = platforms.find((item) => item.name === options.action);
     if (platformData) {
       options.action = platformData.url;
@@ -102,10 +109,8 @@ const ShareUrl = function (args) {
     shareSuccess();
   };
 
-  const hideElement = function() {
-    element.style.display = 'none';
-  };
   
+  // Setup
   const setup = function() {
     let datasetOptions = {...element.dataset};
     let datasetPrefix = 'share';
@@ -120,6 +125,8 @@ const ShareUrl = function (args) {
 			options[prop] = value;
 		};
 
+    if (element.href && !element.dataset.shareAction) options.action = element.href;
+
     if ((options.fallback && navigator.share !== undefined)) {
       hideElement();
       return;
@@ -133,7 +140,7 @@ const ShareUrl = function (args) {
       navigator[options.action] ? element.addEventListener('click', () => shareEvent()) : hideElement();
     }
     else {
-      element.addEventListener('click', () => sharePlatform());
+      element.addEventListener('click', (event) => sharePlatform(event));
     }
   };
 

@@ -16,15 +16,52 @@
   text-align: center;
   cursor: pointer;
 }
+
 .share-url:hover, .share-url:focus, .share-url.is-active, share-url button:hover, share-url button:focus, share-url button.is-active {
+    color: #fff;
     background-color: #0034a3;
   }
+
 .share-url svg, share-url button svg {
     width: 1em;
     height: 1em;
     fill: currentColor;
     stroke: currentColor;
   }
+
 .share-url:not(.is-active) svg:last-of-type, share-url button:not(.is-active) svg:last-of-type, .share-url.is-active svg:first-of-type, share-url button.is-active svg:first-of-type {
     display: none;
   }
+
+/* JS fallback */
+
+.share-url fallback a {
+      color: #fff;
+    }
+
+@media not (scripting: none) {
+    .share-url fallback {
+      display: none;
+    }
+  }
+
+@media (scripting: none) {
+    /* &:not(:has(fallback)) {
+      display: none;
+    } */
+      .share-url:has(fallback) > *:not(fallback) {
+        display: none;
+      }
+  }
+
+share-url:defined fallback {
+      display: none;
+    }
+
+/* &:not(:has(fallback)) {
+      display: none;
+    } */
+
+share-url:not(:defined):has(fallback) > *:not(fallback) {
+        display: none;
+      }

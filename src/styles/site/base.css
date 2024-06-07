@@ -212,6 +212,7 @@ code {
 }
 
 
+/* Browser support message */
 .unsupported {
   display: none;
 

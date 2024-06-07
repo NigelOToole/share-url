@@ -1,29 +1,6 @@
 class ShareUrl extends HTMLElement {
 
-  // Utilities
-  checkBoolean(string) {
-	  if (string.toLowerCase() === 'true') return true;
-	  if (string.toLowerCase() === 'false') return false;
-		return string;
-  }
-
-  camelCase(text, delimiter = '-') {
-    const pattern = new RegExp((`${delimiter}([a-z])`), 'g');
-    return text.replace(pattern, (match, replacement) => replacement.toUpperCase());
-  }
-
-  isValidUrl(string) {
-    try {
-      new URL(string);
-      return true;
-    } 
-    catch (error) {
-      return false;
-    }
-  }
-
-
-  // Methods
+  // Setup
   constructor() {
     super();
 
@@ -40,7 +17,22 @@ class ShareUrl extends HTMLElement {
       textSuccess: 'Shared',
       maintainSize: false,
       fallback: false,
-    }  
+    }
+
+    this.platforms = [{ name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }];
+
+    this.setup();
+  }
+
+  connectedCallback() {
+    this.setup();
+  }
+
+  setup() {
+    if (this._instantiated) return;
+
+    this.element = this.querySelector('button, a');
+    if (!this.element) return;
 
 		for (const item of this.getAttributeNames()) {
       let prop = this.camelCase(item);
@@ -48,12 +40,7 @@ class ShareUrl extends HTMLElement {
       this.options[prop] = value;
 		}
 
-    this.platforms = [{ name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }];
-  }
-
-  connectedCallback() {
-    this.element = this.querySelector('button');
-    if (!this.element) return;
+    if (this.element.href && !this.getAttribute('action')) this.options.action = this.element.href;
 
     if ((this.options.fallback && navigator.share !== undefined)) {
       this.hideElement();
@@ -68,14 +55,41 @@ class ShareUrl extends HTMLElement {
       navigator[this.options.action] ? this.element.addEventListener('click', () => this.shareEvent()) : this.style.display = 'none';
     }
     else {
-      this.element.addEventListener('click', () => this.sharePlatform());
+      this.element.addEventListener('click', (event) => this.sharePlatform(event));
     }
-  } 
+
+    this._instantiated = true;
+  }
+
+
+  // Utilities
+  checkBoolean(string) {
+	  if (string.toLowerCase() === 'true') return true;
+	  if (string.toLowerCase() === 'false') return false;
+		return string;
+  }
+
+  isValidUrl(string) {
+    try {
+      new URL(string);
+      return true;
+    } 
+    catch (error) {
+      return false;
+    }
+  }
 
   hideElement() {
     this.style.display = 'none';
-  };
+  }
 
+  camelCase(text, delimiter = '-') {
+    const pattern = new RegExp((`${delimiter}([a-z])`), 'g');
+    return text.replace(pattern, (match, replacement) => replacement.toUpperCase());
+  }
+
+
+  // Methods
   async shareEvent() {
     try {
       if (this.options.action === 'share') await navigator.share({ title: this.options.title, text: this.options.title, url: this.options.url });
@@ -88,7 +102,9 @@ class ShareUrl extends HTMLElement {
     }
   }
 
-  sharePlatform() {
+  sharePlatform(event) {
+    event.preventDefault();
+
     let platformData = this.platforms.find((item) => item.name === this.options.action);
     if (platformData) {
       this.options.action = platformData.url;
@@ -138,5 +154,4 @@ class ShareUrl extends HTMLElement {
 }
 
 customElements.define('share-url', ShareUrl);
-
 export { ShareUrl };

@@ -136,14 +136,14 @@
   gap: var(--layout-space);
 }
 
-.group--min {
+/* .group--min {
   > * > *:first-child {
     &, & > *:first-child {
       min-width: 144px;
       text-align: center;
     }
   }
-}
+} */
 
 
 /* Demos */

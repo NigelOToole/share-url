@@ -1,6 +1,8 @@
 # Share URL
 ### Share a URL with Web Share, copy to clipboard or to a social platform
 
+Native Web Share API is used if available, can copy link to clipboard and share directly to social media.
+
 ### [Demo and documentation](http://nigelotoole.github.io/share-url/)
 
 ---

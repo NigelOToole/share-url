@@ -16,6 +16,7 @@
   cursor: pointer;
 
   &:is(:hover, :focus, .is-active) {
+    color: #fff;
     background-color: #0034a3;
   }
 
@@ -28,5 +29,52 @@
 
   &:not(.is-active) svg:last-of-type, &.is-active svg:first-of-type {
     display: none;
+  }
+}
+
+/* JS fallback */
+.share-url {
+  fallback {
+    a {
+      color: #fff;
+    }
+  }
+
+  @media not (scripting: none) {
+    fallback {
+      display: none;
+    }
+  }
+
+  @media (scripting: none) {
+    /* &:not(:has(fallback)) {
+      display: none;
+    } */
+
+    &:has(fallback) {
+      > *:not(fallback) {
+        display: none;
+      } 
+    }
+  }
+}
+
+share-url {
+  &:defined {
+    fallback {
+      display: none;
+    }
+  }
+
+  &:not(:defined) {
+    /* &:not(:has(fallback)) {
+      display: none;
+    } */
+
+    &:has(fallback) {
+      > *:not(fallback) {
+        display: none;
+      } 
+    }
   }
 }

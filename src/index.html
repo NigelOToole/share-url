@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Share URL - Share a URL with Web Share, copy to clipboard or to a social platform</title>
-    <meta name="description" content="Share a URL with Web Share, copy to clipboard or to a social platform">
+    <title>Share URL - Share a URL with Web Share, copy to clipboard or to social media</title>
+    <meta name="description" content="Native Web Share API is used if available, can copy link to clipboard and share directly to social platforms.">
 
     <meta property="og:title" content="Share URL"> 
-    <meta property="og:description" content="Share a URL with Web Share, copy to clipboard or to a social platform">
+    <meta property="og:description" content="Share a URL with Web Share, copy to clipboard or to social media">
     <meta property="og:site_name" content="Share URL">
     <meta property="og:url" content="https://nigelotoole.github.io/share-url/">
     <meta property="og:image" content="https://nigelotoole.github.io/share-url/images/share-url-social.png">
@@ -45,7 +45,7 @@
         <div class="container content flow">
 
           <div class="heading page-intro">
-            <h2 class="page-heading">Share a URL with Web Share, copy to clipboard or to a social platform</h2>
+            <h2 class="page-heading">Share a URL with Web Share, copy to clipboard or to social media</h2>
 
             <img src="images/share-url-logo.svg" class="page-intro-img" width="80" height="80" alt="Share URL logo">
           </div>
@@ -79,10 +79,13 @@
             </div>
 
             <div class="group">
-              <button class="share-url" data-share-action="twitter">Twitter</button>
               <button class="share-url" data-share-action="facebook">Facebook</button>
+              <button class="share-url" data-share-action="twitter">Twitter</button>
               <button class="share-url" data-share-action="mastodon">Mastodon</button>
               <button class="share-url" data-share-action="linkedin">Linkedin</button>
+            </div>
+
+            <div class="group">
               <button class="share-url" data-share-action="https://www.reddit.com/submit" data-share-title-parameter="title">Reddit</button>
               <button class="share-url" data-share-action="whatsapp://send" data-share-url-parameter="">WhatsApp</button>
             </div>
@@ -92,22 +95,31 @@
 
           <h3>Complex</h3>
 
-          <section class="demo demo--complex">
+          <section class="demo demo--complex flow">
 
             <div class="group">
     
               <button class="share-url" data-share-text-selector="span" data-share-maintain-size="true">
-                <span>Share link</span> 
+                <span>Share with icon</span> 
                 <svg aria-hidden="true" viewbox="0 0 24 24"><path d="m3.293 11.293 1.414 1.414L11 6.414V20h2V6.414l6.293 6.293 1.414-1.414L12 2.586l-8.707 8.707z"/></svg>
                 <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
               </button>
               
               <button class="share-url" data-share-text-selector="span" data-share-maintain-size="true" data-share-action="clipboard" data-share-text-success="Copied">
-                <span>Copy link</span> 
+                <span>Copy with icon</span> 
                 <svg aria-hidden="true" viewbox="0 0 24 24"><rect x="8" y="3" width="13" height="13" rx="0" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></rect><path d="M4 7v12c0 .6.4 1 1 1h12" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs" fill="none"></path></svg>
                 <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
               </button>
     
+            </div>
+
+            <div class="group">
+              <button class="share-url" data-share-action="linkedin">
+                <span>Share fallback element</span>
+                <fallback><a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">Fallback element</a></fallback>
+              </button>
+
+              <a class="share-url" href="https://www.reddit.com/submit?title=Share URL" target="_blank" data-share-title-parameter="title">Share link</a>
             </div>
 
           </section>
@@ -115,10 +127,9 @@
 
           <h3>Web Component</h3>
 
-          <section class="demo demo--wc">
+          <section class="demo demo--wc flow">
 
             <div class="group">    
-
               <share-url text-selector="span" maintain-size="true">
               <button>
                 <span>Share link</span> 
@@ -134,16 +145,22 @@
                 <svg viewBox="0 0 24 24" stroke-width="2" stroke-linecap="square" stroke-linejoin="arcs"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" fill="none" /><path d="M22 4 12 14.01l-3-3" fill="none"/></svg>
               </button>
               </share-url>
-              
+            </div>
 
-              <!-- <share-url action="linkedin"><button>Linkedin</button></share-url>
-              <share-url action="https://www.reddit.com/submit" title-parameter="title"><button>Reddit</button></share-url>
+            <div class="group">
+              <share-url action="linkedin">
+                <button>Share fallback element</button>
+                <fallback><a href="https://www.linkedin.com/shareArticle?mini=true" target="_blank">Fallback element</a></fallback>
+              </share-url>
+
+              <share-url action="https://www.reddit.com/submit" title-parameter="title"><a class="share-url" href="https://www.reddit.com/submit?title=Share URL" target="_blank">Share link</a></share-url>
+  
+              <!-- <share-url action="https://www.reddit.com/submit" title-parameter="title"><button>Reddit</button></share-url>
+
               <share-url action="whatsapp://send" url-parameter=""><button>WhatsApp</button></share-url> -->
-    
             </div>
 
           </section>
-
 
         </div>
       </section>
@@ -159,36 +176,52 @@
 
           <h2>Usage</h2>
 
-          <p>Import the JS into your project, add the elements to your HTML and initialize the plugin if needed.</p>
+          <p>Import or add the JS into your project, add the elements to your HTML and initialize the plugin if needed.</p>
 
-          <ul>
-            <li>JS: <code>node_modules/@nigelotoole/share-url/src/scripts/share-url.js</code></li>
-            <li>Web Component: <code>node_modules/@nigelotoole/share-url/src/scripts/share-url-wc.js</code></li>
-          </ul>
 
           <h3>JavaScript</h3>
 
-          <p>Import the JS into your build process or add the script tag to the page.</p>
+<pre><code class="scroll-shadow-inline" tabindex="0">import { ShareUrl, ShareUrlAuto } from 'share-url.js';</code></pre>  
+          
+          <p>OR</p>
 
-<pre><code class="scroll-shadow-inline" tabindex="0">import { ShareUrl, ShareUrlAuto } from 'share-url.js';
+<pre><code class="scroll-shadow-inline" tabindex="0">&lt;script src="share-url.js" type="module"&gt;&lt;/script&gt;</code></pre>
 
-// Initialize a single element
+
+          <h3>Web Component</h3>
+<pre><code class="scroll-shadow-inline" tabindex="0">import { ShareUrl } from 'share-url-wc.js';</code></pre>
+          
+          <p>OR</p>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">&lt;script src="share-url-wc.js" type="module"&gt;&lt;/script&gt;</code></pre>
+
+
+          <h3>Initialize JS</h3>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">// Initialize a single element
 const ShareUrlDefault = ShareUrl({ 
   selector: '#share-url--default'
 });
 
-// Initialize all elements with default options, these can be overridden by reinitializing or by data attributes on the element.
+// Initialize all elements with default options
+// These can be overridden by reinitializing or from data attributes on the element.
 ShareUrlAuto();
 </code></pre>   
-        
-          <h3>Web Component</h3>
 
-<pre><code class="scroll-shadow-inline" tabindex="0">import { ShareUrl } from 'share-url-wc.js';</code></pre>
+
+          <h3>Markup</h3>
+
+          <h4>JS</h4>
+<pre><code class="scroll-shadow-inline" tabindex="0">&lt;button class="share-url"&gt;Share link&lt;/button&gt;</code></pre>       
+
+          <h4>Web Component</h4>
+
+<pre><code class="scroll-shadow-inline" tabindex="0">&lt;share-url&gt;&lt;button&gt;Share link&lt;/button&gt;&lt;/share-url&gt;</code></pre>
 
 
           <h3>Options</h3>
 
-          <p>The options can be set via initialization in the JS or by data attributes on the element with the prefix 'share'. The web component uses attributes without any prefix. Attributes will be given the highest priority.</p>
+          <p>The options can be set via initialization in the JS or by attributes on the element, which will be given the highest priority. The property is changed from camel case to dash case with with the prefix 'share' added for the JS version e.g. "activeClass" to "share-active-class". </p>
 
           <pre><code class="scroll-shadow-inline" tabindex="0">&lt;button class="share-url" data-share-active-class="is-open"&gt;</code></pre>
 
@@ -278,15 +311,6 @@ ShareUrlAuto();
           </div>
 
 
-          <h3>Markup</h3>
-
-<pre><code class="scroll-shadow-inline" tabindex="0">&lt;button class="share-url"&gt;Share link&lt;/button&gt;</code></pre>          
-
-          <h3>Web Component</h3>
-
-<pre><code class="scroll-shadow-inline" tabindex="0">&lt;share-url&gt;&lt;button&gt;Share link&lt;/button&gt;&lt;/share-url&gt;</code></pre>
-
-
         <h2>Compatibility</h2>
         <p>Supports all modern browsers at the time of release.</p>
 
@@ -300,7 +324,7 @@ $ npm run dev
 
           <h3>References</h3>
           <p><a href="https://web.dev/patterns/web-apps/share/">How to let the user share the website they are on</a> by Thomas Steiner, <a href="https://www.zachleat.com/web/webcare-webshare/">webcare-webshare Web Component</a> by Zach Leatherman and <a href="https://christianheilmann.com/2023/08/18/adding-a-share-to-mastodon-link-to-any-web-site-and-here/">Adding a “share to mastodon” link to any web site – and here</a> by Christian Heilmann.</p>
-          <p><a href="https://adactio.com/journal/20618">HTML web components</a> by Jeremy Keith and <a href="https://blog.jim-nielsen.com/2023/html-web-components/">HTML web components</a> by Jim Nielsen.</p>
+          <p><a href="https://adactio.com/journal/20618">HTML web components</a> by Jeremy Keith, <a href="https://blog.jim-nielsen.com/2023/html-web-components/">HTML web components</a> by Jim Nielsen, <a href="https://gomakethings.com/the-different-ways-to-instantiate-a-web-component/">The different ways to instantiate a Web Component</a> and <a href="https://gomakethings.com/progressively-enhancing-a-web-component/">Progressively enhancing a Web Component</a> by Chris Ferdinandi.</p>
 
         </div>
       </section>
