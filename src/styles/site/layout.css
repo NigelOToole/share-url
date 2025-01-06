@@ -120,7 +120,7 @@
     }
 
     /* Small gap directly after heading and inside heading wrapper */
-    :is(h2, h3, h4, .heading) + *, &.heading > * + * {
+    :is(h2, h3, h4, .heading) + *, :is(h2, h3, h4, .heading) + p + *, &.heading > * + * {
       --flow-space: var(--layout-space-sm);
     }
   }

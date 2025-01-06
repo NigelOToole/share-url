@@ -67,6 +67,16 @@ a {
 
 
 /* Elements and utilities */
+html {
+  scroll-padding-block-start: var(--header-height);
+  scroll-behavior: smooth;
+}
+
+[id]:not(.fullwidth) {
+  scroll-margin-block-start: 1ex;
+}
+
+
 .img-fluid {
   max-width: 100%;
   height: auto;

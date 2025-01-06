@@ -16,10 +16,10 @@ class ShareUrl extends HTMLElement {
       textLabel: '',
       textSuccess: 'Shared',
       maintainSize: false,
-      fallback: false,
     }
 
-    this.platforms = [{ name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }];
+    this.platforms = [{ name: 'bluesky', url: 'https://bsky.app/intent/compose', urlParameter: '' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'reddit', url: 'https://www.reddit.com/submit', titleParameter: 'title' }, { name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'threads', url: 'https://www.threads.net/intent/post' }];
+
 
     this.setup();
   }
@@ -42,17 +42,12 @@ class ShareUrl extends HTMLElement {
 
     if (this.element.href && !this.getAttribute('action')) this.options.action = this.element.href;
 
-    if ((this.options.fallback && navigator.share !== undefined)) {
-      this.hideElement();
-      return;
-    } 
-
     this.textElement = this.querySelector(this.options.textSelector);
     if (this.textElement === null) this.textElement = this.element;
     if (this.options.textLabel) this.textElement.innerText = this.options.textLabel;
 
     if (this.options.action === 'share' || this.options.action === 'clipboard') {
-      navigator[this.options.action] ? this.element.addEventListener('click', () => this.shareEvent()) : this.style.display = 'none';
+      navigator[this.options.action] ? this.element.addEventListener('click', () => this.shareEvent()) : this.setFallback();
     }
     else {
       this.element.addEventListener('click', (event) => this.sharePlatform(event));
@@ -79,9 +74,14 @@ class ShareUrl extends HTMLElement {
     }
   }
 
-  hideElement() {
-    this.style.display = 'none';
-  }
+  setFallback() {
+    if (this.element.querySelector('fallback') !== null) {
+      this.element.classList.add('is-fallback');
+    }
+    else {
+      this.style.display = 'none';
+    }
+  };
 
   camelCase(text, delimiter = '-') {
     const pattern = new RegExp((`${delimiter}([a-z])`), 'g');
@@ -108,8 +108,8 @@ class ShareUrl extends HTMLElement {
     let platformData = this.platforms.find((item) => item.name === this.options.action);
     if (platformData) {
       this.options.action = platformData.url;
-      if (platformData.titleParameter) this.options.titleParameter = platformData.titleParameter;
-      if (platformData.urlParameter) this.options.urlParameter = platformData.urlParameter;
+      this.options.urlParameter = platformData.urlParameter ?? this.options.urlParameter;
+      this.options.titleParameter = platformData.titleParameter ?? this.options.titleParameter;
     }
 
     if (this.options.action === 'mastodon') {
@@ -127,7 +127,6 @@ class ShareUrl extends HTMLElement {
     }
 
     if (!this.isValidUrl(this.options.action)) return;
-
 
     const platformURL = new URL(this.options.action);
 

@@ -11,10 +11,9 @@ const ShareUrl = function (args) {
     textLabel: '',
     textSuccess: 'Shared',
     maintainSize: false,
-    fallback: false,
 	}
 
-  let platforms = [{ name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }];
+  let platforms = [{ name: 'bluesky', url: 'https://bsky.app/intent/compose', urlParameter: '' }, { name: 'facebook', url: 'https://facebook.com/sharer/sharer.php', titleParameter: 't', urlParameter: 'u' }, { name: 'linkedin', url: 'https://www.linkedin.com/shareArticle?mini=true' }, { name: 'reddit', url: 'https://www.reddit.com/submit', titleParameter: 'title' }, { name: 'twitter', url: 'https://twitter.com/intent/tweet' }, { name: 'threads', url: 'https://www.threads.net/intent/post' }];
 
 	let options = {...defaults, ...args};
 
@@ -40,8 +39,13 @@ const ShareUrl = function (args) {
     }
   };
 
-  const hideElement = function() {
-    element.style.display = 'none';
+  const setFallback = function() {
+    if (element.querySelector('fallback') !== null) {
+      element.classList.add('is-fallback');
+    }
+    else {
+      element.style.display = 'none';
+    }
   };
 
 
@@ -65,17 +69,14 @@ const ShareUrl = function (args) {
     }
   };
 
-  // https://www.bentasker.co.uk/posts/documentation/general/adding-a-share-on-mastodon-button-to-a-website.html
-  // https://christianheilmann.com/2023/08/18/adding-a-share-to-mastodon-link-to-any-web-site-and-here/
-
   const sharePlatform = function (event) {
     event.preventDefault();
 
     let platformData = platforms.find((item) => item.name === options.action);
     if (platformData) {
       options.action = platformData.url;
-      if (platformData.titleParameter) options.titleParameter = platformData.titleParameter;
-      if (platformData.urlParameter) options.urlParameter = platformData.urlParameter;
+      options.urlParameter = platformData.urlParameter ?? options.urlParameter;
+      options.titleParameter = platformData.titleParameter ?? options.titleParameter;
     }
 
     if (options.action === 'mastodon') {
@@ -127,17 +128,12 @@ const ShareUrl = function (args) {
 
     if (element.href && !element.dataset.shareAction) options.action = element.href;
 
-    if ((options.fallback && navigator.share !== undefined)) {
-      hideElement();
-      return;
-    } 
-
     textElement = element.querySelector(options.textSelector);
     if (textElement === null) textElement = element;
     if (options.textLabel) textElement.innerText = options.textLabel;
 
     if (options.action === 'share' || options.action === 'clipboard') {
-      navigator[options.action] ? element.addEventListener('click', () => shareEvent()) : hideElement();
+      navigator[options.action] ? element.addEventListener('click', () => shareEvent()) : setFallback();
     }
     else {
       element.addEventListener('click', (event) => sharePlatform(event));

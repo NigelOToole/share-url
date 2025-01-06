@@ -224,6 +224,13 @@ a:focus-within {
     outline: 2px solid var(--link-color);
   }
 /* Elements and utilities */
+html {
+  scroll-padding-block-start: var(--header-height);
+  scroll-behavior: smooth;
+}
+[id]:not(.fullwidth) {
+  scroll-margin-block-start: 1ex;
+}
 .img-fluid {
   max-width: 100%;
   height: auto;
@@ -491,7 +498,7 @@ code.scroll-shadow-inline {
       --flow-space: var(--layout-space-md);
     }
 /* Small gap directly after heading and inside heading wrapper */
-.flow h2:not(.does-not-exist) + *, .flow h3:not(.does-not-exist) + *, .flow h4:not(.does-not-exist) + *, .flow .heading + *, .flow.heading > * + * {
+.flow h2:not(.does-not-exist) + *, .flow h3:not(.does-not-exist) + *, .flow h4:not(.does-not-exist) + *, .flow .heading + *, .flow h2:not(.does-not-exist) + p + *, .flow h3:not(.does-not-exist) + p + *, .flow h4:not(.does-not-exist) + p + *, .flow .heading + p + *, .flow.heading > * + * {
       --flow-space: var(--layout-space-sm);
     }
 /* Group */
